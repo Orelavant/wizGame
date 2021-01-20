@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     // Game Object References
     public GameObject msle;
 
+    // Bools
+    private bool msleOut = false;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -22,8 +25,9 @@ public class PlayerController : MonoBehaviour {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey("space")) {
+        if (Input.GetKey("space") && !msleOut) {
             Instantiate(msle, transform.position, Quaternion.identity);
+            msleOut = true;
         }
     }
 
